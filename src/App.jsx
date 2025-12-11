@@ -2,94 +2,7 @@ import './App.css'
 import logo from './assets/Icon_secondV.png'
 import { useState, useEffect } from 'react'
 import Carrusel from './components/Carrusel'
-
-// Datos de ejemplo de propiedades
-const PROPIEDADES_DATA = [
-  {
-    id: 1,
-    tipo: 'casa',
-    operacion: 'venta',
-    titulo: 'Casa en el Centro',
-    descripcion: 'Hermosa casa de 3 dormitorios en el centro de Río Cuarto, con amplio jardín y garage para 2 autos. Cocina moderna, living comedor espacioso.',
-    precio: 250000,
-    ubicacion: 'Río Cuarto',
-    dormitorios: 3,
-    banos: 2,
-    imagenes: ['https://via.placeholder.com/600x400/4a5568/ffffff?text=Casa+Centro+1', 'https://via.placeholder.com/600x400/34495e/ffffff?text=Casa+Centro+2', 'https://via.placeholder.com/600x400/2c3e50/ffffff?text=Casa+Centro+3']
-  },
-  {
-    id: 2,
-    tipo: 'departamento',
-    operacion: 'venta',
-    titulo: 'Apartamento Moderno',
-    descripcion: 'Departamento de 2 dormitorios en Carlos Paz, con vista panorámica. Incluye cochera cubierta y amenities completos.',
-    precio: 180000,
-    ubicacion: 'Carlos Paz',
-    dormitorios: 2,
-    banos: 1,
-    imagenes: ['https://via.placeholder.com/600x400/667eea/ffffff?text=Depto+Moderno+1', 'https://via.placeholder.com/600x400/764ba2/ffffff?text=Depto+Moderno+2']
-  },
-  {
-    id: 3,
-    tipo: 'casa',
-    operacion: 'venta',
-    titulo: 'Casa con Jardín',
-    descripcion: 'Amplia casa de 4 dormitorios en Calamuchita, rodeada de naturaleza. Ideal para familias que buscan tranquilidad.',
-    precio: 350000,
-    ubicacion: 'Calamuchita',
-    dormitorios: 4,
-    banos: 3,
-    imagenes: ['https://via.placeholder.com/600x400/48bb78/ffffff?text=Casa+Jardin+1', 'https://via.placeholder.com/600x400/38a169/ffffff?text=Casa+Jardin+2', 'https://via.placeholder.com/600x400/2d995b/ffffff?text=Casa+Jardin+3']
-  },
-  {
-    id: 4,
-    tipo: 'departamento',
-    operacion: 'alquiler',
-    titulo: 'Departamento Céntrico',
-    descripcion: 'Departamento de 1 dormitorio en el centro de Río Cuarto. Perfecto para estudiantes o jóvenes profesionales.',
-    precio: 45000,
-    ubicacion: 'Río Cuarto',
-    dormitorios: 1,
-    banos: 1,
-    imagenes: ['https://via.placeholder.com/600x400/f6993f/ffffff?text=Depto+Centrico+1', 'https://via.placeholder.com/600x400/e67e22/ffffff?text=Depto+Centrico+2']
-  },
-  {
-    id: 5,
-    tipo: 'campo',
-    operacion: 'venta',
-    titulo: 'Campo Productivo',
-    descripcion: 'Campo de 50 hectáreas en zona rural, apto para agricultura y ganadería. Cuenta con instalaciones y pozo de agua.',
-    precio: 2500000,
-    ubicacion: 'Río Cuarto - Zona Rural',
-    dormitorios: 0,
-    banos: 0,
-    imagenes: ['https://via.placeholder.com/600x400/6ab04c/ffffff?text=Campo+1', 'https://via.placeholder.com/600x400/badc58/ffffff?text=Campo+2']
-  },
-  {
-    id: 6,
-    tipo: 'terreno',
-    operacion: 'venta',
-    titulo: 'Terreno Urbanizado',
-    descripcion: 'Terreno de 300m² en Carlos Paz, con todos los servicios. Ideal para construir la casa de tus sueños.',
-    precio: 95000,
-    ubicacion: 'Carlos Paz',
-    dormitorios: 0,
-    banos: 0,
-    imagenes: ['https://via.placeholder.com/600x400/22a6b3/ffffff?text=Terreno+1']
-  },
-  {
-    id: 7,
-    tipo: 'casa',
-    operacion: 'alquiler',
-    titulo: 'Casa Familiar',
-    descripcion: 'Casa de 3 dormitorios para alquiler en Calamuchita. Patio amplio, quincho y pileta.',
-    precio: 80000,
-    ubicacion: 'Calamuchita',
-    dormitorios: 3,
-    banos: 2,
-    imagenes: ['https://via.placeholder.com/600x400/eb4d4b/ffffff?text=Casa+Familiar+1', 'https://via.placeholder.com/600x400/ee5a6f/ffffff?text=Casa+Familiar+2']
-  }
-]
+import PROPIEDADES_DATA from './data/propiedades.json'
 
 function App() {
   const [vistaActual, setVistaActual] = useState('inicio')
@@ -131,54 +44,58 @@ function App() {
   return (
     <div className="App" id="inicio">
       <header className="header">
-        <div className="header-brand">
-          <img src={logo} alt="Logo Inmobiliaria" className="logo" />
-          <h1>Marianela Breit Inmobiliaria</h1>
+        <div className="header-row">
+          <div className="header-brand">
+            <img src={logo} alt="Logo Inmobiliaria" className="logo" />
+            <h1>Marianela Breit Inmobiliaria</h1>
+          </div>
         </div>
-        <nav>
-          <a onClick={() => handleNavegar('inicio')} style={{cursor: 'pointer'}}>Inicio</a>
-          <div className="dropdown">
-            <a onClick={() => handleNavegar('propiedades')} style={{cursor: 'pointer'}} className="dropdown-toggle">
-              Propiedades <span className="arrow">▼</span>
-            </a>
-            <div className="dropdown-menu">
-              <div className="dropdown-item">
-                <a onClick={() => handleNavegar('propiedades', 'casa')} style={{cursor: 'pointer'}}>Casas <span className="arrow-right">▶</span></a>
-                <div className="submenu">
-                  <a onClick={() => handleNavegar('propiedades', 'casa', 'venta')} style={{cursor: 'pointer'}}>Comprar</a>
-                  <a onClick={() => handleNavegar('propiedades', 'casa', 'venta')} style={{cursor: 'pointer'}}>Vender</a>
-                  <a onClick={() => handleNavegar('propiedades', 'casa', 'alquiler')} style={{cursor: 'pointer'}}>Alquilar</a>
+        <div className="header-links">
+          <nav>
+            <a onClick={() => handleNavegar('inicio')} style={{cursor: 'pointer'}}>Inicio</a>
+            <div className="dropdown">
+              <a onClick={() => handleNavegar('propiedades')} style={{cursor: 'pointer'}} className="dropdown-toggle">
+                Propiedades <span className="arrow">▼</span>
+              </a>
+              <div className="dropdown-menu">
+                <div className="dropdown-item">
+                  <a onClick={() => handleNavegar('propiedades', 'casa')} style={{cursor: 'pointer'}}>Casas <span className="arrow-right">▶</span></a>
+                  <div className="submenu">
+                    <a onClick={() => handleNavegar('propiedades', 'casa', 'venta')} style={{cursor: 'pointer'}}>Comprar</a>
+                    <a onClick={() => handleNavegar('propiedades', 'casa', 'venta')} style={{cursor: 'pointer'}}>Vender</a>
+                    <a onClick={() => handleNavegar('propiedades', 'casa', 'alquiler')} style={{cursor: 'pointer'}}>Alquilar</a>
+                  </div>
                 </div>
-              </div>
-              <div className="dropdown-item">
-                <a onClick={() => handleNavegar('propiedades', 'departamento')} style={{cursor: 'pointer'}}>Departamentos <span className="arrow-right">▶</span></a>
-                <div className="submenu">
-                  <a onClick={() => handleNavegar('propiedades', 'departamento', 'venta')} style={{cursor: 'pointer'}}>Comprar</a>
-                  <a onClick={() => handleNavegar('propiedades', 'departamento', 'venta')} style={{cursor: 'pointer'}}>Vender</a>
-                  <a onClick={() => handleNavegar('propiedades', 'departamento', 'alquiler')} style={{cursor: 'pointer'}}>Alquilar</a>
+                <div className="dropdown-item">
+                  <a onClick={() => handleNavegar('propiedades', 'departamento')} style={{cursor: 'pointer'}}>Departamentos <span className="arrow-right">▶</span></a>
+                  <div className="submenu">
+                    <a onClick={() => handleNavegar('propiedades', 'departamento', 'venta')} style={{cursor: 'pointer'}}>Comprar</a>
+                    <a onClick={() => handleNavegar('propiedades', 'departamento', 'venta')} style={{cursor: 'pointer'}}>Vender</a>
+                    <a onClick={() => handleNavegar('propiedades', 'departamento', 'alquiler')} style={{cursor: 'pointer'}}>Alquilar</a>
+                  </div>
                 </div>
-              </div>
-              <div className="dropdown-item">
-                <a onClick={() => handleNavegar('propiedades', 'campo')} style={{cursor: 'pointer'}}>Campos <span className="arrow-right">▶</span></a>
-                <div className="submenu">
-                  <a onClick={() => handleNavegar('propiedades', 'campo', 'venta')} style={{cursor: 'pointer'}}>Comprar</a>
-                  <a onClick={() => handleNavegar('propiedades', 'campo', 'venta')} style={{cursor: 'pointer'}}>Vender</a>
-                  <a onClick={() => handleNavegar('propiedades', 'campo', 'alquiler')} style={{cursor: 'pointer'}}>Alquilar</a>
+                <div className="dropdown-item">
+                  <a onClick={() => handleNavegar('propiedades', 'campo')} style={{cursor: 'pointer'}}>Campos <span className="arrow-right">▶</span></a>
+                  <div className="submenu">
+                    <a onClick={() => handleNavegar('propiedades', 'campo', 'venta')} style={{cursor: 'pointer'}}>Comprar</a>
+                    <a onClick={() => handleNavegar('propiedades', 'campo', 'venta')} style={{cursor: 'pointer'}}>Vender</a>
+                    <a onClick={() => handleNavegar('propiedades', 'campo', 'alquiler')} style={{cursor: 'pointer'}}>Alquilar</a>
+                  </div>
                 </div>
-              </div>
-              <div className="dropdown-item">
-                <a onClick={() => handleNavegar('propiedades', 'terreno')} style={{cursor: 'pointer'}}>Terrenos <span className="arrow-right">▶</span></a>
-                <div className="submenu">
-                  <a onClick={() => handleNavegar('propiedades', 'terreno', 'venta')} style={{cursor: 'pointer'}}>Comprar</a>
-                  <a onClick={() => handleNavegar('propiedades', 'terreno', 'venta')} style={{cursor: 'pointer'}}>Vender</a>
-                  <a onClick={() => handleNavegar('propiedades', 'terreno', 'alquiler')} style={{cursor: 'pointer'}}>Alquilar</a>
+                <div className="dropdown-item">
+                  <a onClick={() => handleNavegar('propiedades', 'terreno')} style={{cursor: 'pointer'}}>Terrenos <span className="arrow-right">▶</span></a>
+                  <div className="submenu">
+                    <a onClick={() => handleNavegar('propiedades', 'terreno', 'venta')} style={{cursor: 'pointer'}}>Comprar</a>
+                    <a onClick={() => handleNavegar('propiedades', 'terreno', 'venta')} style={{cursor: 'pointer'}}>Vender</a>
+                    <a onClick={() => handleNavegar('propiedades', 'terreno', 'alquiler')} style={{cursor: 'pointer'}}>Alquilar</a>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-          <a href="#nosotros">Nosotros</a>
-          <a href="#contacto">Contacto</a>
-        </nav>
+            <a href="#nosotros">Nosotros</a>
+            <a href="#contacto">Contacto</a>
+          </nav>
+        </div>
       </header>
 
       <div className="info-contacto">

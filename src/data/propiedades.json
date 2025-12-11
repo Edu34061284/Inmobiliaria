@@ -1,0 +1,116 @@
+﻿[
+    {
+        "id":  1,
+        "tipo":  "casa",
+        "operacion":  "venta",
+        "titulo":  "Casa en el Centro",
+        "descripcion":  "Hermosa casa de 3 dormitorios en el centro de Río Cuarto, con amplio jardín y garage para 2 autos. Cocina moderna, living comedor espacioso.",
+        "precio":  250000,
+        "ubicacion":  "Río Cuarto",
+        "dormitorios":  3,
+        "banos":  2,
+        "imagenes":  [
+                         "/imagenes/propiedades/1/casa1.png",
+                         "/imagenes/propiedades/1/casa2.png",
+                         "/imagenes/propiedades/1/casa3.png"
+                     ]
+    },
+    {
+        "id":  2,
+        "tipo":  "departamento",
+        "operacion":  "venta",
+        "titulo":  "Apartamento Moderno",
+        "descripcion":  "Departamento de 2 dormitorios en Carlos Paz, con vista panorámica. Incluye cochera cubierta y amenities completos.",
+        "precio":  180000,
+        "ubicacion":  "Carlos Paz",
+        "dormitorios":  2,
+        "banos":  1,
+        "imagenes":  [
+                         "/imagenes/propiedades/2/https://via.placeholder.com/600x400/667eea/ffffff?text=Depto+Moderno+1"
+                     ]
+    },
+    {
+        "id":  3,
+        "tipo":  "casa",
+        "operacion":  "venta",
+        "titulo":  "Casa con Jardín",
+        "descripcion":  "Amplia casa de 4 dormitorios en Calamuchita, rodeada de naturaleza. Ideal para familias que buscan tranquilidad.",
+        "precio":  350000,
+        "ubicacion":  "Calamuchita",
+        "dormitorios":  4,
+        "banos":  3,
+        "imagenes":  [
+                         "/imagenes/propiedades/3/https://via.placeholder.com/600x400/48bb78/ffffff?text=Casa+Jardin+1"
+                     ]
+    },
+    {
+        "id":  4,
+        "tipo":  "departamento",
+        "operacion":  "alquiler",
+        "titulo":  "Departamento Céntrico",
+        "descripcion":  "Departamento de 1 dormitorio en el centro de Río Cuarto. Perfecto para estudiantes o jóvenes profesionales.",
+        "precio":  45000,
+        "ubicacion":  "Río Cuarto",
+        "dormitorios":  1,
+        "banos":  1,
+        "imagenes":  [
+                         "/imagenes/propiedades/4/https://via.placeholder.com/600x400/f6993f/ffffff?text=Depto+Centrico+1"
+                     ]
+    },
+    {
+        "id":  5,
+        "tipo":  "campo",
+        "operacion":  "venta",
+        "titulo":  "Campo Productivo",
+        "descripcion":  "Campo de 50 hectáreas en zona rural, apto para agricultura y ganadería. Cuenta con instalaciones y pozo de agua.",
+        "precio":  2500000,
+        "ubicacion":  "Río Cuarto - Zona Rural",
+        "dormitorios":  null,
+        "banos":  null,
+        "imagenes":  [
+                         "/imagenes/propiedades/5/https://via.placeholder.com/600x400/6ab04c/ffffff?text=Campo+1"
+                     ]
+    },
+    {
+        "id":  6,
+        "tipo":  "terreno",
+        "operacion":  "venta",
+        "titulo":  "Terreno Urbanizado",
+        "descripcion":  "Terreno de 300m² en Carlos Paz, con todos los servicios. Ideal para construir la casa de tus sueños.",
+        "precio":  95000,
+        "ubicacion":  "Carlos Paz",
+        "dormitorios":  null,
+        "banos":  null,
+        "imagenes":  [
+                         "/imagenes/propiedades/6/https://via.placeholder.com/600x400/22a6b3/ffffff?text=Terreno+1"
+                     ]
+    },
+    {
+        "id":  7,
+        "tipo":  "casa",
+        "operacion":  "alquiler",
+        "titulo":  "Casa Familiar",
+        "descripcion":  "Casa de 3 dormitorios para alquiler en Calamuchita. Patio amplio, quincho y pileta.",
+        "precio":  80000,
+        "ubicacion":  "Calamuchita",
+        "dormitorios":  3,
+        "banos":  2,
+        "imagenes":  [
+                         "/imagenes/propiedades/7/https://via.placeholder.com/600x400/eb4d4b/ffffff?text=Casa+Familiar+1"
+                     ]
+    },
+    {
+        "id":  8,
+        "tipo":  "casa",
+        "operacion":  "venta",
+        "titulo":  "casa en Jujuy",
+        "descripcion":  "Casa de 2 dormitorios y un bano y un jardin amplio.",
+        "precio":  50000,
+        "ubicacion":  "Jujuy",
+        "dormitorios":  2,
+        "banos":  1,
+        "imagenes":  [
+
+                     ]
+    }
+]
