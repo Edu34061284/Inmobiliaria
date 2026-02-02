@@ -8,36 +8,54 @@ function App() {
   const [vistaActual, setVistaActual] = useState('inicio')
   const [filtroTipo, setFiltroTipo] = useState(null)
   const [filtroOperacion, setFiltroOperacion] = useState(null)
+    const [selectedPropId, setSelectedPropId] = useState(null);
 
   const handleNavegar = (vista, tipo = null, operacion = null) => {
-    setVistaActual(vista)
-    setFiltroTipo(tipo)
-    setFiltroOperacion(operacion)
-    window.scrollTo(0, 0)
+    // Si el destino es 'nosotros', primero ir a inicio y luego navegar al hash
+    if (vista === 'nosotros') {
+      setVistaActual('inicio');
+      setFiltroTipo(null);
+      setFiltroOperacion(null);
+      setTimeout(() => {
+        window.location.hash = '#nosotros';
+        window.scrollTo(0, 0);
+      }, 10);
+      return;
+    }
+      setVistaActual(vista);
+      setFiltroTipo(tipo);
+      setFiltroOperacion(operacion);
+      if (vista === 'inicio') {
+        window.location.hash = '#inicio';
+        setSelectedPropId(null);
+      } else if (vista === 'propiedades') {
+        window.location.hash = '#propiedades';
+        if (!tipo && !operacion) setSelectedPropId(null);
+      }
+      setTimeout(() => window.scrollTo(0, 0), 10);
   }
 
-  const propiedadesFiltradas = PROPIEDADES_DATA.filter(prop => {
-    if (filtroTipo && prop.tipo !== filtroTipo) return false
-    if (filtroOperacion && prop.operacion !== filtroOperacion) return false
-    return true
-  })
+    const propiedadesFiltradas = selectedPropId
+      ? PROPIEDADES_DATA.filter(prop => prop.id === selectedPropId)
+      : PROPIEDADES_DATA.filter(prop => {
+          if (filtroTipo && prop.tipo !== filtroTipo) return false;
+          if (filtroOperacion && prop.operacion !== filtroOperacion) return false;
+          return true;
+        });
 
   const getTituloFiltros = () => {
     if (vistaActual === 'inicio') return null
-    
     let titulo = ''
     if (filtroTipo) {
       titulo = filtroTipo.charAt(0).toUpperCase() + filtroTipo.slice(1) + 's'
     } else {
       titulo = 'Propiedades'
     }
-    
     if (filtroOperacion) {
       if (filtroOperacion === 'venta') titulo += ' en Venta'
       else if (filtroOperacion === 'alquiler') titulo += ' para Alquilar'
       else if (filtroOperacion === 'comprar') titulo += ' en Venta'
     }
-    
     return titulo
   }
 
@@ -61,38 +79,34 @@ function App() {
                 <div className="dropdown-item">
                   <a onClick={() => handleNavegar('propiedades', 'casa')} style={{cursor: 'pointer'}}>Casas <span className="arrow-right">▶</span></a>
                   <div className="submenu">
-                    <a onClick={() => handleNavegar('propiedades', 'casa', 'venta')} style={{cursor: 'pointer'}}>Comprar</a>
-                    <a onClick={() => handleNavegar('propiedades', 'casa', 'venta')} style={{cursor: 'pointer'}}>Vender</a>
-                    <a onClick={() => handleNavegar('propiedades', 'casa', 'alquiler')} style={{cursor: 'pointer'}}>Alquilar</a>
+                      <a onClick={() => handleNavegar('propiedades', 'casa', 'venta')} style={{cursor: 'pointer'}}>Comprar</a>
+                      <a onClick={() => handleNavegar('propiedades', 'casa', 'alquiler')} style={{cursor: 'pointer'}}>Alquilar</a>
                   </div>
                 </div>
                 <div className="dropdown-item">
                   <a onClick={() => handleNavegar('propiedades', 'departamento')} style={{cursor: 'pointer'}}>Departamentos <span className="arrow-right">▶</span></a>
                   <div className="submenu">
-                    <a onClick={() => handleNavegar('propiedades', 'departamento', 'venta')} style={{cursor: 'pointer'}}>Comprar</a>
-                    <a onClick={() => handleNavegar('propiedades', 'departamento', 'venta')} style={{cursor: 'pointer'}}>Vender</a>
-                    <a onClick={() => handleNavegar('propiedades', 'departamento', 'alquiler')} style={{cursor: 'pointer'}}>Alquilar</a>
+                      <a onClick={() => handleNavegar('propiedades', 'departamento', 'venta')} style={{cursor: 'pointer'}}>Comprar</a>
+                      <a onClick={() => handleNavegar('propiedades', 'departamento', 'alquiler')} style={{cursor: 'pointer'}}>Alquilar</a>
                   </div>
                 </div>
                 <div className="dropdown-item">
                   <a onClick={() => handleNavegar('propiedades', 'campo')} style={{cursor: 'pointer'}}>Campos <span className="arrow-right">▶</span></a>
                   <div className="submenu">
-                    <a onClick={() => handleNavegar('propiedades', 'campo', 'venta')} style={{cursor: 'pointer'}}>Comprar</a>
-                    <a onClick={() => handleNavegar('propiedades', 'campo', 'venta')} style={{cursor: 'pointer'}}>Vender</a>
-                    <a onClick={() => handleNavegar('propiedades', 'campo', 'alquiler')} style={{cursor: 'pointer'}}>Alquilar</a>
+                      <a onClick={() => handleNavegar('propiedades', 'campo', 'venta')} style={{cursor: 'pointer'}}>Comprar</a>
+                      <a onClick={() => handleNavegar('propiedades', 'campo', 'alquiler')} style={{cursor: 'pointer'}}>Alquilar</a>
                   </div>
                 </div>
                 <div className="dropdown-item">
                   <a onClick={() => handleNavegar('propiedades', 'terreno')} style={{cursor: 'pointer'}}>Terrenos <span className="arrow-right">▶</span></a>
                   <div className="submenu">
-                    <a onClick={() => handleNavegar('propiedades', 'terreno', 'venta')} style={{cursor: 'pointer'}}>Comprar</a>
-                    <a onClick={() => handleNavegar('propiedades', 'terreno', 'venta')} style={{cursor: 'pointer'}}>Vender</a>
-                    <a onClick={() => handleNavegar('propiedades', 'terreno', 'alquiler')} style={{cursor: 'pointer'}}>Alquilar</a>
+                      <a onClick={() => handleNavegar('propiedades', 'terreno', 'venta')} style={{cursor: 'pointer'}}>Comprar</a>
+                      <a onClick={() => handleNavegar('propiedades', 'terreno', 'alquiler')} style={{cursor: 'pointer'}}>Alquilar</a>
                   </div>
                 </div>
               </div>
             </div>
-            <a href="#nosotros">Nosotros</a>
+            <a onClick={() => handleNavegar('nosotros')} style={{cursor: 'pointer'}}>Nosotros</a>
             <a href="#contacto">Contacto</a>
           </nav>
         </div>
@@ -126,24 +140,41 @@ function App() {
 
             <section className="propiedades-destacadas" id="propiedades">
               <h3>Propiedades Destacadas</h3>
+              {/* Cambia los IDs aquí para elegir qué propiedades mostrar como destacadas */}
+              {/** Para cambiar las destacadas, edita el array IDS_DESTACADAS abajo **/}
               <div className="propiedades-grid">
-                {PROPIEDADES_DATA.slice(0, 3).map((prop) => (
-                  <div key={prop.id} className="propiedad-card">
-                    <div className="card-badge">{prop.operacion === 'venta' ? 'En Venta' : 'En Alquiler'}</div>
-                    <div className="card-content">
-                      <h4>{prop.titulo}</h4>
-                      <p className="ubicacion">📍 {prop.ubicacion}</p>
-                      {prop.dormitorios > 0 && (
-                        <div className="detalles">
-                          <span>🛏️ {prop.dormitorios} dormitorios</span>
-                          <span>🚿 {prop.banos} baños</span>
+                {(() => {
+                  const IDS_DESTACADAS = [1, 3, 6]; // <--- Cambia estos IDs según tus preferencias
+                  return PROPIEDADES_DATA.filter(prop => IDS_DESTACADAS.includes(prop.id)).map((prop) => (
+                    <div key={prop.id} className="propiedad-card">
+                      <div className="card-badge">{prop.operacion === 'venta' ? 'En Venta' : 'En Alquiler'}</div>
+                      <div className="card-carrusel-mini">
+                        <Carrusel imagenes={prop.imagenes} mini />
+                      </div>
+                      <div className="card-content">
+                        <h4>{prop.titulo}</h4>
+                        <p className="ubicacion">📍 {prop.ubicacion}</p>
+                        {prop.dormitorios > 0 && (
+                          <div className="detalles">
+                            <span>🛏️ {prop.dormitorios} dormitorios</span>
+                            <span>🚿 {prop.banos} baños</span>
+                          </div>
+                        )}
+                        <div className="precio-vermas-row">
+                          <p className="precio">${prop.precio.toLocaleString()}</p>
+                          <button className="ver-mas" onClick={() => {
+                            setSelectedPropId(prop.id);
+                            setVistaActual('propiedades');
+                            setFiltroTipo(null);
+                            setFiltroOperacion(null);
+                            window.location.hash = '#propiedades';
+                            setTimeout(() => window.scrollTo(0, 0), 10);
+                          }}>Ver detalles</button>
                         </div>
-                      )}
-                      <p className="precio">${prop.precio.toLocaleString()}</p>
-                      <button className="ver-mas" onClick={() => handleNavegar('propiedades')}>Ver detalles</button>
+                      </div>
                     </div>
-                  </div>
-                ))}
+                  ))
+                })()}
               </div>
             </section>
           </main>

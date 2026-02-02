@@ -1,17 +1,9 @@
 import { useState, useEffect } from 'react'
 
-function Carrusel({ imagenes }) {
+function Carrusel({ imagenes, mini }) {
   const [indiceActual, setIndiceActual] = useState(0)
 
-  useEffect(() => {
-    if (imagenes.length <= 1) return
-
-    const intervalo = setInterval(() => {
-      setIndiceActual((prevIndice) => (prevIndice + 1) % imagenes.length)
-    }, 5000)
-
-    return () => clearInterval(intervalo)
-  }, [imagenes.length])
+  // Solo cambio manual, sin intervalo automático
 
   const irAnterior = () => {
     setIndiceActual((prevIndice) => 
@@ -28,13 +20,12 @@ function Carrusel({ imagenes }) {
   }
 
   return (
-    <div className="carrusel">
+    <div className={mini ? "carrusel carrusel-mini" : "carrusel"}>
       <img 
         src={imagenes[indiceActual]} 
         alt={`Imagen ${indiceActual + 1}`}
-        className="carrusel-imagen"
+        className={mini ? "carrusel-imagen carrusel-imagen-mini" : "carrusel-imagen"}
       />
-      
       {imagenes.length > 1 && (
         <>
           <button className="carrusel-btn carrusel-btn-prev" onClick={irAnterior}>
@@ -43,7 +34,6 @@ function Carrusel({ imagenes }) {
           <button className="carrusel-btn carrusel-btn-next" onClick={irSiguiente}>
             ›
           </button>
-          
           <div className="carrusel-indicadores">
             {imagenes.map((_, index) => (
               <span

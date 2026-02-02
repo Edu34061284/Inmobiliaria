@@ -1,3 +1,28 @@
+/* Carrusel mini para propiedades destacadas */
+.carrusel-mini {
+  width: 100%;
+  max-width: 400px;
+  height: 80px;
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.carrusel-imagen-mini {
+  width: 100%;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.carrusel-imagen-mini {
+  width: 100%;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
 .App {
   min-height: 100vh;
   display: flex;
@@ -359,9 +384,13 @@
   border-radius: 16px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.08);
   transition: all 0.3s ease;
-  overflow: hidden;
+  overflow: visible;
   position: relative;
   border: 1px solid rgba(0,0,0,0.05);
+  min-height: 420px;
+  max-height: 700px;
+  display: flex;
+  flex-direction: column;
 }
 
 .propiedad-card:hover {
@@ -388,7 +417,13 @@
 
 .card-content {
   padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow: auto;
 }
+
 
 .propiedad-card h4 {
   color: #2c3e50;
@@ -428,29 +463,51 @@
   color: #F7B731;
   font-size: 2rem;
   font-weight: 700;
-  margin: 1rem 0;
+  margin: 1rem 0 0.5rem 0;
   display: block;
 }
 
-.ver-mas {
+.card-content .precio-vermas-row {
+  margin-top: auto;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
   width: 100%;
+  justify-content: space-between;
+}
+
+
+ .ver-mas {
+  width: auto;
   background: #2c3e50;
   color: white;
   border: none;
   padding: 0.9rem;
   font-size: 1rem;
-  font-weight: 600;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 0;
+}
+
+.ver-mas:hover {
+  background: #1a252f;
+  transform: scale(1.06) translateY(-2px);
+}
+
+.card-carrusel-mini {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 0.5rem;
+
   border-radius: 10px;
   cursor: pointer;
   transition: all 0.3s ease;
   margin-top: 1rem;
 }
 
-.ver-mas:hover {
-  background: #1a252f;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-}
 
 /* Sección Nosotros */
 .nosotros {
