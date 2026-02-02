@@ -313,7 +313,12 @@ function App() {
                     )}
                     <div className="propiedad-footer">
                       <p className="precio-grande">${propiedad.precio.toLocaleString()}</p>
-                      <button className="btn-contactar">Contactar</button>
+                      <button className="btn-contactar" onClick={() => {
+                        const contacto = document.getElementById('contacto');
+                        if (contacto) {
+                          contacto.scrollIntoView({ behavior: 'smooth' });
+                        }
+                      }}>Contactar</button>
                     </div>
                   </div>
                 </div>
