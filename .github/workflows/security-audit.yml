@@ -1,0 +1,21 @@
+name: Security Audit
+
+on:
+  pull_request:
+    branches: [main]
+
+jobs:
+  security:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+      - name: Install dependencies
+        run: npm install
+      - name: Run npm audit
+        run: npm audit --audit-level=moderate
+      - name: Run ESLint security plugin
+        run: npx eslint . --ext .js,.jsx --max-warnings=0
