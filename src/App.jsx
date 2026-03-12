@@ -1,5 +1,5 @@
 import './App.css'
-import logo from './assets/Icon_secondV.png'
+import logo from './assets/Icon_SecondV.png'
 import { useState, useEffect } from 'react'
 import Carrusel from './components/Carrusel'
 import PROPIEDADES_DATA from './data/propiedades.json'
